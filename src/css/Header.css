@@ -1,0 +1,6 @@
+.headerbox{
+    background-color: var(--mainColor);
+    color: var(--pointColor);
+    display: flex;
+    height: 100px;
+}

@@ -1,0 +1,8 @@
+:root{
+    --mainColor: black;
+    --pointColor : #62FFE3;
+}
+
+html{
+    height: 100%;
+}
