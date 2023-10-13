@@ -3,20 +3,21 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './screen/Mainpage';
 import CommunityPage from './screen/CommunityPage';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import CustomPage from './screen/Custompage';
+import OrderPage from './screen/OrderPage';
 
 function App() {
   return (
     <div className="App">
-      <Header />
+
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/community' element={<CommunityPage />} />
+          <Route path='/coustom' element={<CustomPage />} />
+          <Route path='/order' element={<OrderPage />}/>
         </Routes>
       </BrowserRouter>
-      <Footer/>
     </div>
   );
 }

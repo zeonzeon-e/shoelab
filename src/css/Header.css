@@ -1,6 +1,8 @@
-.headerbox{
-    background-color: var(--mainColor);
-    color: var(--pointColor);
-    display: flex;
-    height: 100px;
+.header_logo{
+    width: fit-content;
+}
+
+.header_btn{
+    width: 100%;
+    justify-content: space-between;
 }
