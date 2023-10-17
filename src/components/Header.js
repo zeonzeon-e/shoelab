@@ -9,10 +9,11 @@ function Header(){
     return(
         <div className="header">
             <p className="header_logo">SHOELAB</p>
-            <div>
+            <div className="header_div-btn">
                 <Link to='/commnunity' className="header_btn">커뮤니티</Link>
                 <Link to='/order' className="header_btn">의뢰하기</Link>
                 <Link to='/custom' className="header_btn">커스텀스페이스</Link>
+                <Link to='/login' className="header_btn">로그인</Link>
             </div>
         </div>
     )

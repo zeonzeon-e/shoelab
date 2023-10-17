@@ -1,8 +1,21 @@
+.header{
+    display: flex;
+}
+
 .header_logo{
+    display: flex;
     width: fit-content;
+    font-family: "SUITE-Heavy";
+    font-size: 3rem;
+}
+
+.header_div-btn{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .header_btn{
-    width: 100%;
-    justify-content: space-between;
+    font-size: 2rem;
 }
+

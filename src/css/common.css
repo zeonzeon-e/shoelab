@@ -1,3 +1,38 @@
+@font-face {
+    font-family: "SUITE-Bold";
+    src: url("../Fonts/SUITE-Bold.ttf");
+}
+  
+@font-face {
+    font-family: "SUITE-ExtraBold";
+    src: url("../Fonts/SUITE-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "SUITE-Heavy";
+    src: url("../Fonts/SUITE-Heavy.ttf");
+}
+
+@font-face {
+    font-family: "SUITE-Light";
+    src: url("../Fonts/SUITE-Light.ttf");
+}
+
+@font-face {
+    font-family: "SUITE-Medium";
+    src: url("../Fonts/SUITE-Medium.ttf");
+}
+
+@font-face {
+    font-family: "SUITE-Regular";
+    src: url("../Fonts/SUITE-Regular.ttf");
+}
+
+@font-face {
+    font-family: "SUITE-SemiBold";
+    src: url("../Fonts/SUITE-SemiBold.ttf");
+}
+
 :root{
     --mainColor: black;
     --pointColor : #62FFE3;
@@ -6,6 +41,8 @@
 html{
     width: 100vw;
     height: 100vh;
+    font-family: "SUITE-Medium";
+    font-size: 10px;
 }
 
 .header{
@@ -16,6 +53,8 @@ html{
     justify-content: space-around;
     align-items: center;
 }
+
+
 
 .content{
     height: calc(100vh - 200px);
