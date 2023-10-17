@@ -11,6 +11,7 @@ function MainPage(){
             <Main />
             <Footer />
         </div>
+
     )
 }
 

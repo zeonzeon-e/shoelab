@@ -41,7 +41,6 @@
 html{
     width: 100vw;
     height: 100vh;
-    font-family: "SUITE-Medium";
     font-size: 10px;
 }
 
@@ -58,6 +57,8 @@ html{
 
 .content{
     height: calc(100vh - 200px);
+    text-align: center;
+    font-family: 'SUITE-Medium';
 }
 
 .footer{

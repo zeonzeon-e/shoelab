@@ -4,7 +4,12 @@ import "../css/footer.css"
 
 function Footer(){
     return(
-        <div className="footer">Footer</div>
+        <div className="footer">
+            <div>
+                <p>Illustration by Anton H</p>
+                <p>https://url.kr/fbqgaj</p>
+            </div>
+        </div>
     )
 }
 
