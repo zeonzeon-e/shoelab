@@ -2,15 +2,16 @@ import React from "react";
 import "../css/reset.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Main from "../components/Main";
 
-function Main(){
+function MainPage(){
     return(
         <div className="content">
             <Header />
-            <h1>helloe</h1>
+            <Main />
             <Footer />
         </div>
     )
 }
 
-export default Main;
+export default MainPage;
