@@ -10,7 +10,7 @@ function Main(){
     return(
         <div className="Main_div">
             <div className="Main_div-img">
-                <img src={Shoe} alt="신발사진"/>
+                <img src={Shoe} width='100%' alt="신발사진"/>
             </div>
             <div className="Main_div-txt">
                 <p>세상에서 하나밖에 없는</p>
