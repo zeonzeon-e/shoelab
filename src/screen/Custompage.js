@@ -1,10 +1,10 @@
 import React from "react";
 import "../css/reset.css";
 
-function Main(){
+function CustomPage(){
     return(
         <div><h1>helloe</h1></div>
     )
 }
 
-export default Main;
+export default CustomPage;

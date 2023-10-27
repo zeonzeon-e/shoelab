@@ -44,6 +44,11 @@ html{
     font-size: 10px;
 }
 
+.Page{
+    display: flex;
+    flex-direction: column;
+}
+
 .header{
     background-color: var(--mainColor);
     color: var(--pointColor);
@@ -56,9 +61,13 @@ html{
 
 
 .content{
+    width: 100%;
     height: calc(100vh - 200px);
     text-align: center;
     font-family: 'SUITE-Medium';
+    padding: 5%;
+    flex: 1 1 auto;
+
 }
 
 .footer{
@@ -68,4 +77,7 @@ html{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
+    flex: 0 0 auto;
 }
+

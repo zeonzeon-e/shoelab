@@ -1,0 +1,46 @@
+.Searchbar{
+    margin: auto;
+    width: 80%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 10%;
+}
+
+.Searchbar_input{
+    width: 70vw;
+    height: 5vh;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    
+}
+
+.Searchbar_btn{
+    background-color: var(--pointColor);
+    border-radius: 8px;
+    width: 10vw;
+    height: 5vh;
+    margin-left: 2%;
+    font-size: 2rem;
+}
+
+.Searchbar_btn:hover{
+    box-shadow: inset 2px 2px 5px 0 rgba(0, 0, 0, 0.2),
+        inset -2px -2px 5px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* 아이템리스트 */
+.ItemList_div{
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    row-gap: 5%;
+    column-gap: 5%;
+}
+
+.item_img{
+    display: flex;
+    border: 1px solid black;
+    flex-direction: column;
+}

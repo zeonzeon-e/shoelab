@@ -1,11 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './screen/Mainpage';
 import CommunityPage from './screen/CommunityPage';
 import CustomPage from './screen/Custompage';
 import OrderPage from './screen/OrderPage';
-import LoginPage from './screen/LoginPage'
+import LoginPage from './screen/LoginPage';
 
 function App() {
   return (
@@ -15,7 +14,7 @@ function App() {
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/community' element={<CommunityPage />} />
-          <Route path='/coustom' element={<CustomPage />} />
+          <Route path='/custom' element={<CustomPage />} />
           <Route path='/order' element={<OrderPage />}/>
           <Route path='/login' element={<LoginPage />}/>
         </Routes>
