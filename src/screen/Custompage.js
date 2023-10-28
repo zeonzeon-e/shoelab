@@ -1,9 +1,18 @@
 import React from "react";
 import "../css/reset.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 function CustomPage(){
     return(
-        <div><h1>helloe</h1></div>
+        <div className="Page">
+            <Header />
+            <div className="content">
+
+            </div>
+            <Footer />
+        </div>
+
     )
 }
 
