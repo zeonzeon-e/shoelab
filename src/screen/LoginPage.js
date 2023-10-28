@@ -32,6 +32,7 @@ function LoginPage(){
                     <Link to='/'>
                         <button className="box_button">로그인</button>
                     </Link>
+                    <br></br>
                     <Link to='/'>
                         <button className="box_button" >회원가입</button>
                     </Link>

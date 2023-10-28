@@ -43,8 +43,10 @@ const item_img = (arr) => {
     const result = [];
     for (let i = 0; i < arr.length; i++){
         result.push(
-        <Link to={'/community/${arr.id}'}>
-        <button className="item_img" key={arr.id}><p>{arr[i].id}</p><img src={arr[i].img}/></button></Link>);
+        <Link to={'/community/detail'}>
+        <button className="item_img" key={arr.id}>
+            <p>{arr[i].id}</p><img src={arr[i].img}/>
+        </button></Link>);
     }
     return result;
 }
