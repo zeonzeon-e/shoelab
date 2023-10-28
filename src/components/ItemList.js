@@ -4,6 +4,7 @@ import "../css/footer.css";
 import "../css/components.css";
 import Shoe from '../shoes/shoe_green.png';
 import Item from "./Item";
+import { Link } from "react-router-dom";
 
 const itemList = [
     {
@@ -30,6 +31,11 @@ const itemList = [
         id: 6,
         img: Shoe
     },
+    {
+        id: 7,
+        img: Shoe
+    },
+
 
 ]
 
@@ -37,7 +43,8 @@ const item_img = (arr) => {
     const result = [];
     for (let i = 0; i < arr.length; i++){
         result.push(
-        <div className="item_img"><p>{arr[i].id}</p><img src={arr[i].img}/></div>);
+        <Link to={'/community/${arr.id}'}>
+        <button className="item_img" key={arr.id}><p>{arr[i].id}</p><img src={arr[i].img}/></button></Link>);
     }
     return result;
 }
