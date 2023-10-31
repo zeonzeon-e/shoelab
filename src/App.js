@@ -5,6 +5,8 @@ import CommunityPage from './screen/CommunityPage';
 import CustomPage from './screen/Custompage';
 import OrderPage from './screen/OrderPage';
 import LoginPage from './screen/LoginPage';
+import DetailPage from './screen/ItemDetailPage';
+import OrderDetailPage from './screen/OrderDetailPage';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path='/custom' element={<CustomPage />} />
           <Route path='/order' element={<OrderPage />}/>
           <Route path='/login' element={<LoginPage />}/>
+          <Route path='/community/detail' element={<DetailPage />}/>
+          <Route path='/order/detail' element={<OrderDetailPage />}/>
         </Routes>
       </BrowserRouter>
     </div>

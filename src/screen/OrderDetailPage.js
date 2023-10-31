@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/reset.css";
+import "../css/common.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Master from "../components/Master";
 
-function Main(){
+
+function OrderDetailPage(){
+    
+    
+
     return(
         <div className="Page">
             <Header />
             <div className="content">
-                <Master />
             </div>
             <Footer />
         </div>
@@ -17,4 +20,4 @@ function Main(){
     )
 }
 
-export default Main;
+export default OrderDetailPage;    

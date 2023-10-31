@@ -1,63 +1,100 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/reset.css";
 import "../css/footer.css";
 import "../css/components.css";
 import Shoe from '../shoes/shoe_green.png';
-import Item from "./Item";
-import { Link } from "react-router-dom";
+import Heart_icon from "../icon/Heart.png";
+import Download_icon from "../icon/Download.png";
 
 const itemList = [
     {
-        id: 1,
+        title: 1,
+        userName: "jihyeon",
         img: Shoe
     },
     {
-        id: 2,
+        title: 2,
+        userName: "jihyeon",
         img: Shoe
     },
     {
-        id: 3,
+        title: 3,
+        userName: "jihyeon",
         img: Shoe
     },
     {
-        id: 4,
+        title: 4,
+        userName: "jihyeon",
         img: Shoe
     },
     {
-        id: 5,
+        title: 5,
+        userName: "jihyeon",
         img: Shoe
     },
     {
-        id: 6,
+        title: 6,
+        userName: "jihyeon",
         img: Shoe
     },
     {
-        id: 7,
+        title: 7,
+        userName: "jihyeon",
         img: Shoe
     },
-
-
 ]
+
+//heart icon ClickEvnet
+function HeartBtn(){
+    const [clicked, setClicked] = useState(false);
+    return (
+        <button onClick={() => setClicked(!clicked)} className={"Heart_icon" + (clicked ? " active" : "")}>
+        <img src={Heart_icon} width="30vw" />
+        </button>
+    )
+}
+
+//heart icon ClickEvnet
+function DownloadBtn(){
+    const [clicked, setClicked] = useState(false);
+    return (
+        <button onClick={() => setClicked(!clicked)} className={"Download_icon" + (clicked ? " active" : "")}>
+        <img src={Download_icon} width="30vw" />
+        </button>
+    )
+}
 
 const item_img = (arr) => {
     const result = [];
     for (let i = 0; i < arr.length; i++){
         result.push(
-        <Link to={'/community/detail'}>
-        <button className="item_img" key={arr.id}>
-            <p>{arr[i].id}</p><img src={arr[i].img}/>
-        </button></Link>);
+        // <Link to={'/community/detail'}>
+        <button className="item_box" id="item_box" key={arr.id} onClick={() => window.location.assign("/community/detail")}>
+            <img src={arr[i].img}/>
+            <div className="item_box-text" onClick={(e) => {e.stopPropagation();}}>
+                <p className="itemBox_p">{arr[i].title}</p>
+                <p className="itemBox_p">{arr[i].userName}</p>
+                <div className="icon_div">
+                    <HeartBtn />
+                    <DownloadBtn />
+                </div>                
+            </div>
+        </button>
+    
+        
+        );
     }
     return result;
 }
 
 
 function ItemList(){
-        return(
-            <div className="ItemList_div">
-                {item_img(itemList)}
-            </div>
-        )
+
+    return(
+        <div className="ItemList_div">
+            {item_img(itemList)}
+        </div>
+    )    
     
 }
 
