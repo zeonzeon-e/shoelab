@@ -1,4 +1,46 @@
 .threeSpace{
-    width: 50vw;
-    height: 50vw;
+    display: flex;
+    margin: auto;
+    text-align: center;
+}
+
+.Canvas{
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+}
+
+
+/*ColorPicker.js CSS*/
+.ColorPicker{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid black;
+    width: 500px;
+    height: 30px;
+}
+
+.ColorPicker_input{
+    width: 10vw;
+    font-size: 1.8vw;
+    font-family: 'SUITE-Bold';
+}
+
+.ColorPicker_button{
+    height: 30px;
+    font-size: 1.8vw;
+    font-family: 'SUITE-Bold';
+    border: 1px solid black;
+    border-radius: 5px / 4px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.ColorPicker_picker_Open{
+    position: fixed;
+    padding: 5px;
+    margin-top: 40px;
+    display: inline-block;
+    z-index: 3;
 }

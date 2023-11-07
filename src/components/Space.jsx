@@ -8,6 +8,7 @@ import '../css/customspace.css'
 
 export default function Scene({ ...props }) {
   const { nodes, materials } = useSpline('https://prod.spline.design/CXn8xUxZDVxWpuRy/scene.splinecode')
+  const Material = nodes['Nike_Air_Force_1_Set_White:Shoelaces_L1'].material;
   return (
     <>
       <color attach="background" args={['#74757a']} />
