@@ -29,10 +29,12 @@ const intensity = 1;
             </Suspense> */}
             {/* <SpaceFunction /> */}
             <Suspense fallback={null}>
-            <Canvas className="treeCanvas">
+                <div className="treeCanvas">
+            <Canvas>
                 <ThreeSpace />
                 <OrbitControls />
             </Canvas>
+            </div>
             </Suspense>
             </div>
             <div className="Page_under">

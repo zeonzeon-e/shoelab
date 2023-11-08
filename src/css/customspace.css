@@ -10,6 +10,12 @@
     border: 1px solid black;
 }
 
+.treeCanvas{
+    display: flex;
+    width: 700px;
+    height: 500px;
+    border-radius: 10px;
+}
 
 /*ColorPicker.js CSS*/
 .ColorPicker{

@@ -4,16 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
-
-
+import {
+  RecoilRoot, atom, selector, useRecoilState, useRecoilValue
+} from 'recoil'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <RecoilRoot>
   <React.StrictMode>
   <ChakraProvider>
     <App />
   </ChakraProvider>
   </React.StrictMode>
+  </RecoilRoot>
 );
 
 // If you want to start measuring performance in your app, pass a function
