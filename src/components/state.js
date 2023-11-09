@@ -11,4 +11,9 @@ const colorState = atom({
     default: 0
 });
 
-export { colorState}
+const PartState = atom({
+    key: "ShoePart",
+    default: ''
+})
+
+export { colorState, PartState}

@@ -1,15 +1,4 @@
-.threeSpace{
-    display: flex;
-    margin: auto;
-    text-align: center;
-}
-
-.Canvas{
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-}
-
+/* 3D Canvas */
 .treeCanvas{
     display: flex;
     width: 700px;
@@ -24,18 +13,19 @@
     justify-content: center;
     border: 1px solid black;
     width: 500px;
-    height: 30px;
+    height: 40px;
 }
 
 .ColorPicker_input{
-    width: 10vw;
-    font-size: 1.8vw;
+    width: 90px;
+    font-size: 1.6rem;
     font-family: 'SUITE-Bold';
 }
 
 .ColorPicker_button{
-    height: 30px;
-    font-size: 1.8vw;
+    height: 40px;
+    width: 80px;
+    font-size: 1.6rem;
     font-family: 'SUITE-Bold';
     border: 1px solid black;
     border-radius: 5px / 4px;
@@ -49,4 +39,32 @@
     margin-top: 40px;
     display: inline-block;
     z-index: 3;
+}
+
+/* 부위 별 버튼 */
+.PartButton_div{
+    display: flex;
+    width: fit-content;
+}
+
+.PartButton_button{
+    border: 2px black solid;
+    padding: 8px;
+    font-size: 2rem;
+    font-family: 'SUITE-Bold';
+    background-color: var(--pointColor);
+    margin-left: -2px;
+}
+
+.PartButton_button:hover{
+    background-color: rgba(0, 184, 150, 0.67);
+}
+
+.btn_Shoelaces{
+    border-radius: 5px 0px 0px 5px;
+    margin-left: 0px;
+}
+
+.btn_Sole{
+    border-radius: 0px 5px 5px 0px;
 }
