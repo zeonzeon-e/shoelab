@@ -5,9 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
 import {
-  RecoilRoot, atom, selector, useRecoilState, useRecoilValue
+  RecoilRoot, atom, selector, useRecoilState, useRecoilValue, RecoilEnv
 } from 'recoil'
 
+RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <RecoilRoot>

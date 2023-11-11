@@ -10,42 +10,109 @@ import {
   RecoilRoot,
   atom,
   selector,
-  useRecoilState,
-  useRecoilValue,
+  useRecoilState, useRecoilValue,
 } from "recoil"
-import { PartState, colorState } from './state';
+import { colorState_ShoelacesR, 
+  colorState_LeatherR, 
+  colorState_InnerFabrickR, 
+  colorState_ThreadSoleR,
+  colorState_MetalLabelR,
+  colorState_TongueR,
+  colorState_LabelR,
+  colorState_InsoleR,
+  colorState_SoleR,
+  colorState_ShoelacesL, 
+  colorState_LeatherL, 
+  colorState_InnerFabrickL, 
+  colorState_ThreadSoleL,
+  colorState_MetalLabelL,
+  colorState_TongueL,
+  colorState_LabelL,
+  colorState_InsoleL,
+  colorState_SoleL,
+  PartState} from './state';
 
 export default function Scene({ ...props }) {
   const [ShoePart, setShoePart] = useRecoilState(PartState);
-  const [color, setColor] = useRecoilState(colorState);
-  const colorUpdate = new THREE.Color(color);
+  const [Color_ShoelacesR, setColor_ShoelacesR] = useRecoilState(colorState_ShoelacesR); //obj로 넘어가는 값
+  const [Color_LeatherR, setColor_LeatherR] = useRecoilState(colorState_LeatherR);
+  const [Color_InnerFabrickR, setColor_InnerFabrickR] = useRecoilState(colorState_InnerFabrickR);
+  const [Color_ThreadSoleR, setColor_ThreadSoleR] = useRecoilState(colorState_ThreadSoleR);
+  const [Color_MetalLabelR, setColor_MetalLabelR] = useRecoilState(colorState_MetalLabelR);
+  const [Color_TongueR, setColor_TongueR] = useRecoilState(colorState_TongueR);
+  const [Color_LabelR, setColor_LabelR] = useRecoilState(colorState_LabelR);
+  const [Color_InsoleR, setColor_InsoleR] = useRecoilState(colorState_InsoleR);
+  const [Color_SoleR, setColor_SoleR] = useRecoilState(colorState_SoleR);
+  const [Color_ShoelacesL, setColor_ShoelacesL] = useRecoilState(colorState_ShoelacesL);
+  const [Color_LeatherL, setColor_LeatherL] = useRecoilState(colorState_LeatherL);
+  const [Color_InnerFabrickL, setColor_InnerFabrickL] = useRecoilState(colorState_InnerFabrickL);
+  const [Color_ThreadSoleL, setColor_ThreadSoleL] = useRecoilState(colorState_ThreadSoleL);
+  const [Color_MetalLabelL, setColor_MetalLabelL] = useRecoilState(colorState_MetalLabelL);
+  const [Color_TongueL, setColor_TongueL] = useRecoilState(colorState_TongueL);
+  const [Color_LabelL, setColor_LabelL] = useRecoilState(colorState_LabelL);
+  const [Color_InsoleL, setColor_InsoleL] = useRecoilState(colorState_InsoleL);
+  const [Color_Sole, setColor_SoleL] = useRecoilState(colorState_SoleL);
+
+  const colorUpdate1 = new THREE.Color(Color_ShoelacesR);
+  const colorUpdate2 = new THREE.Color(Color_LeatherR);
+  const colorUpdate3 = new THREE.Color(Color_InnerFabrickR);
+  const colorUpdate4 = new THREE.Color(Color_ThreadSoleR);
+  const colorUpdate5 = new THREE.Color(Color_MetalLabelR);
+  const colorUpdate6 = new THREE.Color(Color_TongueR);
+  const colorUpdate7 = new THREE.Color(Color_LabelR);
+  const colorUpdate8 = new THREE.Color(Color_InsoleR);
+  const colorUpdate9 = new THREE.Color(Color_SoleR);
+
+  const colorUpdate10 = new THREE.Color(Color_ShoelacesL);
+  const colorUpdate11 = new THREE.Color(Color_LeatherL);
+  const colorUpdate12 = new THREE.Color(Color_InnerFabrickL);
+  const colorUpdate13 = new THREE.Color(Color_ThreadSoleL);
+  const colorUpdate14 = new THREE.Color(Color_MetalLabelL);
+  const colorUpdate15 = new THREE.Color(Color_TongueL);
+  const colorUpdate16 = new THREE.Color(Color_LabelL);
+  const colorUpdate17 = new THREE.Color(Color_InsoleL);
+  const colorUpdate18 = new THREE.Color(Color_Sole);
+
   const { nodes, materials } = useSpline('https://prod.spline.design/CXn8xUxZDVxWpuRy/scene.splinecode')
   
-  const Colormaterial = new THREE.MeshLambertMaterial({color:colorUpdate});
+  const Colormaterial1 = new THREE.MeshLambertMaterial({color:colorUpdate1});
+  const Colormaterial2 = new THREE.MeshLambertMaterial({color:colorUpdate2});
+  const Colormaterial3 = new THREE.MeshLambertMaterial({color:colorUpdate3});
+  const Colormaterial4 = new THREE.MeshLambertMaterial({color:colorUpdate4});
+  const Colormaterial5 = new THREE.MeshLambertMaterial({color:colorUpdate5});
+  const Colormaterial6 = new THREE.MeshLambertMaterial({color:colorUpdate6});
+  const Colormaterial7 = new THREE.MeshLambertMaterial({color:colorUpdate7});
+  const Colormaterial8 = new THREE.MeshLambertMaterial({color:colorUpdate8});
+  const Colormaterial9 = new THREE.MeshLambertMaterial({color:colorUpdate9});
+
+  const Colormaterial10 = new THREE.MeshLambertMaterial({color:colorUpdate10});
+  const Colormaterial11 = new THREE.MeshLambertMaterial({color:colorUpdate11});
+  const Colormaterial12 = new THREE.MeshLambertMaterial({color:colorUpdate12});
+  const Colormaterial13 = new THREE.MeshLambertMaterial({color:colorUpdate13});
+  const Colormaterial14 = new THREE.MeshLambertMaterial({color:colorUpdate14});
+  const Colormaterial15 = new THREE.MeshLambertMaterial({color:colorUpdate15});
+  const Colormaterial16 = new THREE.MeshLambertMaterial({color:colorUpdate16});
+  const Colormaterial17 = new THREE.MeshLambertMaterial({color:colorUpdate17});
+  const Colormaterial18 = new THREE.MeshLambertMaterial({color:colorUpdate18});
+
+
+
   // if(ShoePart === THREE.Object3D.name){
   //   console.log("HOOOOO");
   //   this.THREE.Object3D.material = Colormaterial('#00ffff');
   // }
 
-  const partChange = name =>{
-    if(ShoePart === name){
-    }
+  // const meshRef = useRef();
+  // useEffect(() =>  {
+  //   if(meshRef.current) {
+  //     const meshName = meshRef.current.name;
+  //     console.log("Mesh의 name: ",meshName);
+  //     if(meshName === ShoePart){
+  //       console.log("ShoePart name: ",meshName);
+  //     }
+  //   }
+  // }, [meshRef.current, colorUpdate, Colormaterial]);
 
-    console.log(name + "1")
-  }
-  console.log(ShoePart);
-
-  const meshRef = useRef();
-  useEffect(() =>  {
-    if(meshRef.current) {
-      const meshName = meshRef.current.name;
-      console.log("Mesh의 name: ",meshName);
-      if(meshName === ShoePart){
-        console.log("ShoePart name: ",meshName);
-        meshRef.current.material = new THREE.MeshLambertMaterial({color:"#ffffff"});
-      }
-    }
-  }, [meshRef.current]);
 
 
   return (
@@ -54,7 +121,69 @@ export default function Scene({ ...props }) {
       <color attach="background" args={['#333333']} />
       <group {...props} dispose={null}>
         <scene name="Scene 1">
-        <spotLight
+        <PerspectiveCamera
+            name="Camera"
+            makeDefault={false}
+            far={100000}
+            near={70}
+            fov={36.1}
+            up={[0, -1, 0]}
+            position={[889.13, 2353.22, 2714.35]}
+            rotation={[-0.75, 0.28, 0.26]}
+          />
+          <PerspectiveCamera
+            name="TopCamera"
+            makeDefault={true}
+            far={100000}
+            near={70}
+            fov={36.1}
+            up={[0, 1, 0]}
+            position={[-150.85, 1073.01, -98.9]}
+            rotation={[-50, 0, 0]}
+          />
+          <PerspectiveCamera
+            name="RightCamera"
+            makeDefault={false}
+            far={100000}
+            near={70}
+            fov={36.1}
+            up={[0, 1, 0]}
+            position={[-3793.78, 690.96, -121.39]}
+            rotation={[-1.73, -1.36, -1.73]}
+            scale={1}
+          />
+          <PerspectiveCamera
+            name="BackCamera"
+            makeDefault={false}
+            far={100000}
+            near={70}
+            fov={36.1}
+            up={[0, 1, 0]}
+            position={[-219.32, 1321.02, -2921.29]}
+            rotation={[-2.66, 0, 3.14]}
+            scale={1}
+          />
+          <PerspectiveCamera
+            name="LeftCamera"
+            makeDefault={false}
+            far={100000}
+            near={70}
+            fov={36.1}
+            position={[3146.58, 1393.2, -15.69]}
+            rotation={[-Math.PI / 2, 1.13, Math.PI / 2]}
+            scale={1}
+          />
+          <PerspectiveCamera
+            name="FrontCamera "
+            makeDefault={false}
+            far={97997}
+            near={352}
+            fov={36.1}
+            up={[0, 1, 0]}
+            position={[-222.32, 895.3, 3714.98]}
+            rotation={[-0.26, 0, 0]}
+          />
+          <spotLight
             name="Spot Light"
             castShadow
             intensity={1.6}
@@ -65,134 +194,22 @@ export default function Scene({ ...props }) {
             shadow-camera-fov={119.99999999999999}
             shadow-camera-near={100}
             shadow-camera-far={100000}
-            position={[0, 1711.98, 0]}
+            position={[-195, 1641.98, 0]}
           />
-          <PerspectiveCamera
-            name="Camera"
-            makeDefault={true}
-            far={100000}
-            near={70}
-            fov={45}
-            position={[2924.39, 1477.48, 997.08]}
-            rotation={[-0.98, 1.02, 0.9]}
-            scale={1}
-          />
-          <group name="Nike_Air_Force_1_Low" position={[700, -1200, -300]} scale={100}>
-            {/* 왼쪽 신발끈 */}
+  <group name="Nike_Air_Force_1_Low" position={[374.48, -301.97, -1.52]} scale={24.4}>
+            {/* 오른쪽 신발끈 */}
             <mesh
-              name="Sole"
-              ref = {meshRef}
-              geometry={nodes['Nike_Air_Force_1_Set_White:Shoelaces_L1'].geometry}
-              //<meshBasicMaterial attach="material" color={color} />
-              // material={ 
-              //   ShoePart === "Sole" ? Colormaterial : nodes['Nike_Air_Force_1_Set_White:Shoelaces_L1'].material
-              // }
-              material={Colormaterial}
-              onUpdate={partChange()}
+              name="Nike_Air_Force_1_Set_White:Shoelaces_R1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Shoelaces_R1'].geometry}
+              material={Colormaterial1}
               castShadow
               receiveShadow
-            />
+            />            
             {/* 오른쪽 젤 넓은 부분 */}
             <mesh
               name="Nike_Air_Force_1_Set_White:Leather_R1"
               geometry={nodes['Nike_Air_Force_1_Set_White:Leather_R1'].geometry}
-              material={Colormaterial}
-              castShadow
-              receiveShadow
-            />
-            {/* 왼쪽 신발 입구 */}
-            <mesh
-              name="Nike_Air_Force_1_Set_White:Inner_Fabrick_L1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Inner_Fabrick_L1'].geometry}
-              material={Colormaterial}
-              castShadow
-              receiveShadow
-            />
-            {/* 왼쪽 젤 넓은 부분 */}
-            <mesh
-              name="Nike_Air_Force_1_Set_White:Leather_L1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Leather_L1'].geometry}
-              material={Colormaterial}
-              castShadow
-              receiveShadow
-            />
-            {/* 왼쪽 밑참 실 */}
-            <mesh
-              name="Nike_Air_Force_1_Set_White:Thread_Sole_L1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Thread_Sole_L1'].geometry}
-              material={Colormaterial}
-              castShadow
-              receiveShadow
-            />
-            {/* 오른쪽 끈 중간 라밸 */}
-            <mesh
-              name="Nike_Air_Force_1_Set_White:Metal_Label_R1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Metal_Label_R1'].geometry}
-              material={Colormaterial}
-              castShadow
-              receiveShadow
-            />
-            {/* 왼쪽 끈 중간 라벨 */}
-            <mesh
-              name="Nike_Air_Force_1_Set_White:Metal_Label_L1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Metal_Label_L1'].geometry}
-              material={Colormaterial}
-              castShadow
-              receiveShadow
-            />
-            {/* 오른쪽 밑참 실 */}
-            <mesh
-              name="Nike_Air_Force_1_Set_White:Thread_Sole_R1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Thread_Sole_R1'].geometry}
-              material={Colormaterial}
-              castShadow
-              receiveShadow
-            />
-            {/* 왼쪽 신발끈 밑에 부분_설포 */}
-            <mesh
-              name="Nike_Air_Force_1_Set_White:Tongue_L1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Tongue_L1'].geometry}
-              material={Colormaterial}
-              castShadow
-              receiveShadow
-            />
-            {/* 왼쪽 설포 쪽에 있는 라벨 */}
-            <mesh
-              name="Nike_Air_Force_1_Set_White:Label_L1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Label_L1'].geometry}
-              material={Colormaterial}
-              castShadow
-              receiveShadow
-            />
-              {/* 오른쪽 신발끈 */}
-            <mesh
-              name="Nike_Air_Force_1_Set_White:Shoelaces_R1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Shoelaces_R1'].geometry}
-              material={Colormaterial}
-              castShadow
-              receiveShadow
-            />
-            {/* 오른쪽 신발끈 밑에 부분_설포 */}
-            <mesh
-              name="Nike_Air_Force_1_Set_White:Tongue_R1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Tongue_R1'].geometry}
-              material={Colormaterial}
-              castShadow
-              receiveShadow
-            />
-            {/* 오른쪽 안창_깔창 */}
-            <mesh
-              name="Nike_Air_Force_1_Set_White:Insole_R1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Insole_R1'].geometry}
-              material={Colormaterial}
-              castShadow
-              receiveShadow
-            />
-            {/* 왼쪽 밑창 */}
-            <mesh
-              name="Nike_Air_Force_1_Set_White:Sole_L1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Sole_L1'].geometry}
-              material={Colormaterial}
+              material={Colormaterial2}
               castShadow
               receiveShadow
             />
@@ -200,7 +217,31 @@ export default function Scene({ ...props }) {
             <mesh
               name="Nike_Air_Force_1_Set_White:Inner_Fabrick_R1"
               geometry={nodes['Nike_Air_Force_1_Set_White:Inner_Fabrick_R1'].geometry}
-              material={Colormaterial}
+              material={Colormaterial3}
+              castShadow
+              receiveShadow
+            />
+            {/* 오른쪽 밑참 실 */}
+            <mesh
+              name="Nike_Air_Force_1_Set_White:Thread_Sole_R1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Thread_Sole_R1'].geometry}
+              material={Colormaterial4}
+              castShadow
+              receiveShadow
+            />
+            {/* 오른쪽 끈 중간 라밸 */}
+            <mesh
+              name="Nike_Air_Force_1_Set_White:Metal_Label_R1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Metal_Label_R1'].geometry}
+              material={Colormaterial5}
+              castShadow
+              receiveShadow
+            />
+            {/* 오른쪽 신발끈 밑에 부분_설포 */}
+            <mesh
+              name="Nike_Air_Force_1_Set_White:Tongue_R1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Tongue_R1'].geometry}
+              material={Colormaterial6}
               castShadow
               receiveShadow
             />
@@ -208,15 +249,15 @@ export default function Scene({ ...props }) {
             <mesh
               name="Nike_Air_Force_1_Set_White:Label_R1"
               geometry={nodes['Nike_Air_Force_1_Set_White:Label_R1'].geometry}
-              material={Colormaterial}
+              material={Colormaterial7}
               castShadow
               receiveShadow
             />
-            {/* 왼쪽 안창_깔창 */}
+            {/* 오른쪽 안창_깔창 */}
             <mesh
-              name="Nike_Air_Force_1_Set_White:Insole_L1"
-              geometry={nodes['Nike_Air_Force_1_Set_White:Insole_L1'].geometry}
-              material={Colormaterial}
+              name="Nike_Air_Force_1_Set_White:Insole_R1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Insole_R1'].geometry}
+              material={Colormaterial8}
               castShadow
               receiveShadow
             />
@@ -224,7 +265,81 @@ export default function Scene({ ...props }) {
             <mesh
               name="Nike_Air_Force_1_Set_White:Sole_R1"
               geometry={nodes['Nike_Air_Force_1_Set_White:Sole_R1'].geometry}
-              material={Colormaterial}
+              material={Colormaterial9}
+              castShadow
+              receiveShadow
+            />
+
+{/*------------------------------------------------------------------------------*/}
+            {/* 왼쪽 신발끈 */}
+            <mesh
+              name="Sole"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Shoelaces_L1'].geometry}
+              material={Colormaterial10}
+              castShadow
+              receiveShadow
+            />
+            {/* 왼쪽 젤 넓은 부분 */}
+            <mesh
+              name="Nike_Air_Force_1_Set_White:Leather_L1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Leather_L1'].geometry}
+              material={Colormaterial11}
+              castShadow
+              receiveShadow
+            />            
+            {/* 왼쪽 신발 입구 */}
+            <mesh
+              name="Nike_Air_Force_1_Set_White:Inner_Fabrick_L1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Inner_Fabrick_L1'].geometry}
+              material={Colormaterial12}
+              castShadow
+              receiveShadow
+            />
+            {/* 왼쪽 밑참 실 */}
+            <mesh
+              name="Nike_Air_Force_1_Set_White:Thread_Sole_L1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Thread_Sole_L1'].geometry}
+              material={Colormaterial13}
+              castShadow
+              receiveShadow
+            />            
+            {/* 왼쪽 끈 중간 라벨 */}
+            <mesh
+              name="Nike_Air_Force_1_Set_White:Metal_Label_L1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Metal_Label_L1'].geometry}
+              material={Colormaterial14}
+              castShadow
+              receiveShadow
+            />
+            {/* 왼쪽 신발끈 밑에 부분_설포 */}
+            <mesh
+              name="Nike_Air_Force_1_Set_White:Tongue_L1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Tongue_L1'].geometry}
+              material={Colormaterial15}
+              castShadow
+              receiveShadow
+            />
+            {/* 왼쪽 설포 쪽에 있는 라벨 */}
+            <mesh
+              name="Nike_Air_Force_1_Set_White:Label_L1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Label_L1'].geometry}
+              material={Colormaterial16}
+              castShadow
+              receiveShadow
+            />
+            {/* 왼쪽 안창_깔창 */}
+            <mesh
+              name="Nike_Air_Force_1_Set_White:Insole_L1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Insole_L1'].geometry}
+              material={Colormaterial17}
+              castShadow
+              receiveShadow
+            />
+            {/* 왼쪽 밑창 */}
+            <mesh
+              name="Nike_Air_Force_1_Set_White:Sole_L1"
+              geometry={nodes['Nike_Air_Force_1_Set_White:Sole_L1'].geometry}
+              material={Colormaterial18}
               castShadow
               receiveShadow
             />
@@ -241,7 +356,7 @@ export default function Scene({ ...props }) {
             shadow-camera-right={1000}
             shadow-camera-top={1000}
             shadow-camera-bottom={-1000}
-            position={[200, 300, 300]}
+            position={[-128.42, 411.24, 300]}
           />
           <OrthographicCamera name="1" makeDefault={false} far={10000} near={-50000} />
           <hemisphereLight name="Default Ambient Light" intensity={0.16} color="#eaeaea" />
