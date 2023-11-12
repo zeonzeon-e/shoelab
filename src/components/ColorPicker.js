@@ -22,7 +22,12 @@ import { colorState_ShoelacesR,
     colorState_LabelL,
     colorState_InsoleL,
     colorState_SoleL,
-    PartState} from './state';
+    PartState,
+    SelectCamera,
+    WholeBool,
+    TopBool,
+    RightBool
+} from './state';
 
 // const color_R = 'colorPicker/color_R';
 // const color_G = 'colorPicker/color_G';
@@ -59,6 +64,11 @@ function ColorPicker(){
     const [buttonPress, setButtonPress] = useState();
     const [PartValue, SetPartValue] = useRecoilState(PartState);
     const [wayValue, SetWayValue] = useState("");
+    const [RecoilCameraValue, setCamera] = useRecoilState(SelectCamera);
+    const [wholebool, setWholeBool] = useRecoilState(WholeBool);
+    const [topbool, setTopBool] = useRecoilState(TopBool);
+    const [rigtbool, setRightBool] = useRecoilState(RightBool)
+
     const handleChange = (color) => {
             this.setState({ color: color.rgb })
     };
@@ -80,6 +90,27 @@ function ColorPicker(){
         }else if(bool === false){
             SetWayValue("R");
         }
+    }
+
+    const CameraChange = value => {
+        setCamera(value);
+        console.log(value);
+        if(value === 'WholeCamera'){
+            setWholeBool(true);
+            setTopBool(false);
+            setRightBool(false);
+        }
+        if(value === 'TopCamera'){
+            setTopBool(true);
+            setWholeBool(false);
+            setRightBool(false);
+        }
+        if(value === 'RightCamera'){
+            setTopBool(false);
+            setWholeBool(false);
+            setRightBool(true);
+        }
+
     }
 
     const handleColorChange = (color) => {
@@ -111,6 +142,14 @@ function ColorPicker(){
             <div className='PartButton_div'>
             <button value="L" onClick={() => WayChange(true)} className={ buttonPress === true ? 'PartButton_button btn_Shoelaces btnPress' : 'PartButton_button btn_Shoelaces' }>Left</button>
             <button value="R" onClick={() => WayChange(false)} className={ buttonPress === false ? 'PartButton_button btn_Sole btnPress' : 'PartButton_button btn_Sole'}>Right</button>
+            </div>
+            <div className='PartButton_div'>
+                <button vlaue='WholeCamera' onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'WholeCamera' ? 'PartButton_button btn_Shoelaces btnPress' : 'PartButton_button btn_Shoelaces' }>Whole Camera</button>
+                <button value="FrontCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'FrontCamera' ? 'PartButton_button btnPress' : 'PartButton_button' }>Front Camera</button>
+                <button value="RightCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'RightCamera' ? 'PartButton_button btnPress' : 'PartButton_button' }>Right Camera</button>
+                <button value="LeftCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'LeftCamera' ? 'PartButton_button btnPress' : 'PartButton_button' }>Left Camera</button>
+                <button value="BackCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'BackCamera' ? 'PartButton_button btnPress' : 'PartButton_button' }>Back Camera</button>
+                <button value="TopCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'TopCamera' ? 'PartButton_button btn_Sole btnPress' : 'PartButton_button btn_Sole' }>Top Camera</button>
             </div>
             <div className='PartButton_div'>
                 {/* <RadioGroup label="part" value={PartValue} onChange={SetPartValue}></RadioGroup>

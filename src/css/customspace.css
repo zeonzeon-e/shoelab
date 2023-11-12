@@ -1,8 +1,10 @@
 /* 3D Canvas */
 .treeCanvas{
-    display: flex;
+    /* display: flex; */
+   /* width: 700px;
+    height: 500px; */
     width: 700px;
-    height: 500px;
+    height: 500Px;
     border-radius: 10px;
 }
 

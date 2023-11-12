@@ -83,6 +83,26 @@ const PartState = atom({
     default: ''
 })
 
+const SelectCamera = atom({
+    key: "Camera",
+    default: ''
+})
+
+const WholeBool = atom({
+    key: 'whole',
+    default: 'false'
+})
+
+const TopBool = atom({
+    key: 'top',
+    default: 'false'
+})
+
+const RightBool = atom({
+    key: 'right',
+    default: 'false'
+})
+
 export { colorState_ShoelacesR, 
     colorState_LeatherR, 
     colorState_InnerFabrickR, 
@@ -101,4 +121,9 @@ export { colorState_ShoelacesR,
     colorState_LabelL,
     colorState_InsoleL,
     colorState_SoleL,
-    PartState}
+    PartState,
+    SelectCamera,
+    WholeBool,
+    TopBool,
+    RightBool
+}

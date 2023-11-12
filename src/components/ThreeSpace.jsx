@@ -30,10 +30,21 @@ import { colorState_ShoelacesR,
   colorState_LabelL,
   colorState_InsoleL,
   colorState_SoleL,
-  PartState} from './state';
+  PartState,
+  SelectCamera,
+  TopBool,
+  WholeBool,
+  RightBool
+} from './state';
 
 export default function Scene({ ...props }) {
   const [ShoePart, setShoePart] = useRecoilState(PartState);
+  const [selectCamera, setCamera] = useRecoilState(SelectCamera);
+  const [wholeBool, setWholeBool] = useRecoilState(WholeBool);
+  const [topBool, setTopBool] = useRecoilState(TopBool);
+  const [rightBool, setRightBool] = useRecoilState(RightBool);
+
+
   const [Color_ShoelacesR, setColor_ShoelacesR] = useRecoilState(colorState_ShoelacesR); //obj로 넘어가는 값
   const [Color_LeatherR, setColor_LeatherR] = useRecoilState(colorState_LeatherR);
   const [Color_InnerFabrickR, setColor_InnerFabrickR] = useRecoilState(colorState_InnerFabrickR);
@@ -95,25 +106,103 @@ export default function Scene({ ...props }) {
   const Colormaterial17 = new THREE.MeshLambertMaterial({color:colorUpdate17});
   const Colormaterial18 = new THREE.MeshLambertMaterial({color:colorUpdate18});
 
+  // let WholeCameraBool = true;
+  // let TopCameraBool = false;
+  // let RightCameraBool = false;
+  // let LeftCameraBool = false;
+  // let BackCameraBool = false;
+  // let FrontCameraBool = false;
 
 
+
+  // if(SelectCamera === 'WholeCamera'){
+  //   WholeCameraBool = true;
+  // }else if(SelectCamera === 'TopCamera'){
+  //   TopCameraBool = true;
+  // }
+
+  // useEffect(() => {
+  //   if(SelectCamera === 'WholeCamera'){
+  //     WholeCameraBool = true;
+  //   }else if(SelectCamera === 'TopCamera'){
+  //     TopCameraBool = true;
+  //   }
+  // }, [WholeCameraBool, TopCameraBool])
   // if(ShoePart === THREE.Object3D.name){
   //   console.log("HOOOOO");
   //   this.THREE.Object3D.material = Colormaterial('#00ffff');
   // }
-
-  // const meshRef = useRef();
-  // useEffect(() =>  {
-  //   if(meshRef.current) {
-  //     const meshName = meshRef.current.name;
-  //     console.log("Mesh의 name: ",meshName);
-  //     if(meshName === ShoePart){
-  //       console.log("ShoePart name: ",meshName);
+  // const wholeCameraRef = useRef();
+  // const rightCameraRef = useRef();
+  // const leftCameraRef = useRef();
+  // useEffect(() => {
+  //   const cameras = [rightCameraRef, leftCameraRef]
+  //   cameras.forEach(cameraRef =>{
+  //     if(cameraRef.current.name === selectCamera){
+  //       cameraRef.current.makeDefault = true;
+  //       console.log("camera: " + cameraRef.current.name);
+  //       console.log("camera: " + cameraRef.current.makeDefault)
+  //     }else if(cameraRef.current.name !== selectCamera){
+  //       cameraRef.current.makeDefault = false;
+  //       console.log(cameraRef.current.makeDefault)
+  //       console.log(cameraRef.current.name)
   //     }
+  //   })
+  //   console.log(selectCamera);
+  // }, [selectCamera, rightCameraRef.current.makeDefault, leftCameraRef.current.makeDefault])
+  // useEffect(() => {
+  //   const switchCamera = (cameraRef) => {
+  //     const cameras = [leftCameraRef, rightCameraRef /*... 다른 카메라 ref 추가 */];
+  //     cameras.forEach(camera => {
+  //       if (cameraRef.current && cameraRef.current.name === selectCamera) {
+  //         cameraRef.current.makeDefault = true;
+  //       } else {
+  //         camera.current.makeDefault = false;
+  //       }
+  //     });
+  //   };
+  //   // 선택된 카메라 이름이 변경될 때 switchCamera 함수 호출
+  //   switchCamera((selectCamera + 'Ref')); // 예를 들어, 'wholeCameraRef'를 평가하여 wholeCameraRef를 가져옴
+  // }, [selectCamera]);
+
+  // useEffect(() =>  {
+  //   if(CameraRef.current) {
+  //     const currentCamera = CameraRef.current;
+  //     const nextCamera = selectCamera;
+  //     const CameraState = CameraRef.current.makeDefault;
+  //     console.log(CameraRef.makeDefault)
+  //     console.log(currentCamera.name);
+  //     if (currentCamera.makeDefault === 'true'){
+  //       console.log("카메라 : ", currentCamera.name);
+  //     }
+  //     if(currentCamera === ''){
+  //       console.log("현재 카메라 : ", currentCamera.name);
+  //       console.log("다음 카메라 : ",nextCamera);
+  //     }
+     
+
   //   }
-  // }, [meshRef.current, colorUpdate, Colormaterial]);
+  // }, [CameraRef.current]);
 
 
+  // useEffect(() => {
+  //   // meshRef.current를 통해 Three.js PerspectiveCamera에 접근
+  //   const camera = meshRef.current;
+  
+  //   // 카메라의 위치를 출력하는 함수
+  //   const logCameraPosition = () => {
+  //     if (camera) {
+  //       console.log('카메라 위치:', camera.position.toArray());
+  //     }
+  //   };
+  
+  //   // 위치를 주기적으로 확인하고 싶을 때 setInterval을 이용
+  //   const interval = setInterval(logCameraPosition, 5000); // 1초마다 위치 확인
+  
+  //   return () => {
+  //     clearInterval(interval); // 컴포넌트가 unmount될 때 interval 정리
+  //   };
+  // }, []);
 
   return (
     <>
@@ -122,66 +211,71 @@ export default function Scene({ ...props }) {
       <group {...props} dispose={null}>
         <scene name="Scene 1">
         <PerspectiveCamera
-            name="Camera"
-            makeDefault={false}
+            name="wholeCamera"
+            makeDefault={wholeBool}
+            // ref={wholeCameraRef}
             far={100000}
             near={70}
-            fov={36.1}
-            up={[0, -1, 0]}
-            position={[889.13, 2353.22, 2714.35]}
+            fov={13}
+            up={[0, 1, 0]}
+            position={[867.2, 3394.47, 3509.33]}
             rotation={[-0.75, 0.28, 0.26]}
           />
-          <PerspectiveCamera
-            name="TopCamera"
-            makeDefault={true}
+          <OrthographicCamera
+            name="topCamera"
+            makeDefault={topBool}
+            // ref={CameraRef}
+            zoom={0.5}
             far={100000}
-            near={70}
-            fov={36.1}
+            near={-100000}
             up={[0, 1, 0]}
-            position={[-150.85, 1073.01, -98.9]}
-            rotation={[-50, 0, 0]}
+            position={[0, 500, 0]}
+            rotation={[0, 0, 0]}
           />
-          <PerspectiveCamera
-            name="RightCamera"
-            makeDefault={false}
+          <OrthographicCamera
+            name="rightCamera"
+            makeDefault={rightBool}
+            // ref={rightCameraRef}
+            zoom={0.5}
             far={100000}
-            near={70}
-            fov={36.1}
+            near={-100000}
             up={[0, 1, 0]}
-            position={[-3793.78, 690.96, -121.39]}
-            rotation={[-1.73, -1.36, -1.73]}
+            position={[-3740.48, 855.05, -397.95]}
+            rotation={[-2.11, -1.35, -2.13]}
+          />
+          <OrthographicCamera
+            name="backCamera"
+            makeDefault={false}
+            // ref={CameraRef}
+            zoom={0.5}
+            far={100000}
+            near={-100000}
+            up={[0, 1, 0]}
+            position={[0, 1000, -15000]}
+            rotation={[0, 0, 0]}
             scale={1}
           />
-          <PerspectiveCamera
-            name="BackCamera"
+          <OrthographicCamera
+            name="leftCamera"
             makeDefault={false}
+            // ref={leftCameraRef}
+            zoom={0.5}
             far={100000}
-            near={70}
-            fov={36.1}
-            up={[0, 1, 0]}
-            position={[-219.32, 1321.02, -2921.29]}
-            rotation={[-2.66, 0, 3.14]}
+            near={-100000}
+            position={[3000, 964.48, -89.53]}
+            rotation={[-1.68, 1.36, 1.68]}
             scale={1}
           />
-          <PerspectiveCamera
-            name="LeftCamera"
+          <OrthographicCamera
+            name="frontCamera"
             makeDefault={false}
+            // ref={CameraRef}
+            zoom={0.5}
             far={100000}
-            near={70}
-            fov={36.1}
-            position={[3146.58, 1393.2, -15.69]}
-            rotation={[-Math.PI / 2, 1.13, Math.PI / 2]}
-            scale={1}
-          />
-          <PerspectiveCamera
-            name="FrontCamera "
-            makeDefault={false}
-            far={97997}
-            near={352}
-            fov={36.1}
+            near={-100000}
             up={[0, 1, 0]}
-            position={[-222.32, 895.3, 3714.98]}
-            rotation={[-0.26, 0, 0]}
+            position={[0, 0, 0]}
+            rotation={[0, 0, 0]}
           />
           <spotLight
             name="Spot Light"
@@ -194,9 +288,10 @@ export default function Scene({ ...props }) {
             shadow-camera-fov={119.99999999999999}
             shadow-camera-near={100}
             shadow-camera-far={100000}
-            position={[-195, 1641.98, 0]}
+            position={[-551.11, 1641.98, 0]}
           />
-  <group name="Nike_Air_Force_1_Low" position={[374.48, -301.97, -1.52]} scale={24.4}>
+
+  <group name="Nike_Air_Force_1_Low" position={[700, -200, 0]} scale={30}>
             {/* 오른쪽 신발끈 */}
             <mesh
               name="Nike_Air_Force_1_Set_White:Shoelaces_R1"
@@ -345,6 +440,34 @@ export default function Scene({ ...props }) {
             />
           </group>
           <directionalLight
+            name="Directional Light 2"
+            castShadow
+            intensity={0.7}
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
+            shadow-camera-near={-10000}
+            shadow-camera-far={100000}
+            shadow-camera-left={-1000}
+            shadow-camera-right={1000}
+            shadow-camera-top={1000}
+            shadow-camera-bottom={-1000}
+            position={[1525.53, 620.48, -278.21]}
+          />
+          <directionalLight
+            name="Directional Light 3"
+            castShadow
+            intensity={0.53}
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
+            shadow-camera-near={-10000}
+            shadow-camera-far={100000}
+            shadow-camera-left={-1000}
+            shadow-camera-right={1000}
+            shadow-camera-top={1000}
+            shadow-camera-bottom={-1000}
+            position={[-2016.1, 230.99, -321.84]}
+          />
+          <directionalLight
             name="Directional Light"
             castShadow
             intensity={0.77}
@@ -356,8 +479,9 @@ export default function Scene({ ...props }) {
             shadow-camera-right={1000}
             shadow-camera-top={1000}
             shadow-camera-bottom={-1000}
-            position={[-128.42, 411.24, 300]}
+            position={[-128.42, 411.24, 334.55]}
           />
+
           <OrthographicCamera name="1" makeDefault={false} far={10000} near={-50000} />
           <hemisphereLight name="Default Ambient Light" intensity={0.16} color="#eaeaea" />
         </scene>
