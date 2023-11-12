@@ -34,7 +34,10 @@ import { colorState_ShoelacesR,
   SelectCamera,
   TopBool,
   WholeBool,
-  RightBool
+  RightBool,
+  FrontBool,
+  LeftBool,
+  BackBool
 } from './state';
 
 export default function Scene({ ...props }) {
@@ -43,6 +46,9 @@ export default function Scene({ ...props }) {
   const [wholeBool, setWholeBool] = useRecoilState(WholeBool);
   const [topBool, setTopBool] = useRecoilState(TopBool);
   const [rightBool, setRightBool] = useRecoilState(RightBool);
+  const [leftBool, setLeftBool] = useRecoilState(LeftBool);
+  const [frontBool, setFrontBool] = useRecoilState(FrontBool);
+  const [backBool, setBackBool] = useRecoilState(BackBool);
 
 
   const [Color_ShoelacesR, setColor_ShoelacesR] = useRecoilState(colorState_ShoelacesR); //obj로 넘어가는 값
@@ -245,7 +251,7 @@ export default function Scene({ ...props }) {
           />
           <OrthographicCamera
             name="backCamera"
-            makeDefault={false}
+            makeDefault={backBool}
             // ref={CameraRef}
             zoom={0.5}
             far={100000}
@@ -257,7 +263,7 @@ export default function Scene({ ...props }) {
           />
           <OrthographicCamera
             name="leftCamera"
-            makeDefault={false}
+            makeDefault={leftBool}
             // ref={leftCameraRef}
             zoom={0.5}
             far={100000}
@@ -268,7 +274,7 @@ export default function Scene({ ...props }) {
           />
           <OrthographicCamera
             name="frontCamera"
-            makeDefault={false}
+            makeDefault={frontBool}
             // ref={CameraRef}
             zoom={0.5}
             far={100000}

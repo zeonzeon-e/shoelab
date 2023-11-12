@@ -98,10 +98,24 @@ const TopBool = atom({
     default: 'false'
 })
 
+const FrontBool = atom({
+    key: 'front',
+    default: 'false'
+})
+
 const RightBool = atom({
     key: 'right',
     default: 'false'
 })
+const LeftBool = atom({
+    key: 'left',
+    default: 'false'
+})
+const BackBool = atom({
+    key: 'back',
+    default: 'false'
+})
+
 
 export { colorState_ShoelacesR, 
     colorState_LeatherR, 
@@ -125,5 +139,8 @@ export { colorState_ShoelacesR,
     SelectCamera,
     WholeBool,
     TopBool,
-    RightBool
+    RightBool,
+    FrontBool,
+    LeftBool,
+    BackBool
 }

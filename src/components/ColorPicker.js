@@ -26,7 +26,10 @@ import { colorState_ShoelacesR,
     SelectCamera,
     WholeBool,
     TopBool,
-    RightBool
+    RightBool,
+    FrontBool,
+    LeftBool,
+    BackBool
 } from './state';
 
 // const color_R = 'colorPicker/color_R';
@@ -67,7 +70,11 @@ function ColorPicker(){
     const [RecoilCameraValue, setCamera] = useRecoilState(SelectCamera);
     const [wholebool, setWholeBool] = useRecoilState(WholeBool);
     const [topbool, setTopBool] = useRecoilState(TopBool);
-    const [rigtbool, setRightBool] = useRecoilState(RightBool)
+    const [rightbool, setRightBool] = useRecoilState(RightBool)
+    const [fronbool, setFrontBool] = useRecoilState(FrontBool);
+    const [leftbool, setLeftBool] = useRecoilState(LeftBool);
+    const [backbool, setBackBool] = useRecoilState(BackBool)
+
 
     const handleChange = (color) => {
             this.setState({ color: color.rgb })
@@ -99,16 +106,49 @@ function ColorPicker(){
             setWholeBool(true);
             setTopBool(false);
             setRightBool(false);
+            setLeftBool(false);
+            setFrontBool(false);
+            setBackBool(false);
         }
         if(value === 'TopCamera'){
-            setTopBool(true);
             setWholeBool(false);
+            setTopBool(true);
             setRightBool(false);
+            setLeftBool(false);
+            setFrontBool(false);
+            setBackBool(false);
         }
         if(value === 'RightCamera'){
-            setTopBool(false);
             setWholeBool(false);
+            setTopBool(false);
             setRightBool(true);
+            setLeftBool(false);
+            setFrontBool(false);
+            setBackBool(false);
+        }
+        if(value === 'LeftCamera'){
+            setWholeBool(false);
+            setTopBool(false);
+            setRightBool(false);
+            setLeftBool(true);
+            setFrontBool(false);
+            setBackBool(false);
+        }
+        if(value === 'FrontCamera'){
+            setWholeBool(false);
+            setTopBool(false);
+            setRightBool(false);
+            setLeftBool(false);
+            setFrontBool(true);
+            setBackBool(false);
+        }
+        if(value === 'BackCamera'){
+            setWholeBool(false);
+            setTopBool(false);
+            setRightBool(false);
+            setLeftBool(false);
+            setFrontBool(false);
+            setBackBool(true);
         }
 
     }
@@ -144,7 +184,7 @@ function ColorPicker(){
             <button value="R" onClick={() => WayChange(false)} className={ buttonPress === false ? 'PartButton_button btn_Sole btnPress' : 'PartButton_button btn_Sole'}>Right</button>
             </div>
             <div className='PartButton_div'>
-                <button vlaue='WholeCamera' onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'WholeCamera' ? 'PartButton_button btn_Shoelaces btnPress' : 'PartButton_button btn_Shoelaces' }>Whole Camera</button>
+                <button vlaue='WholeCamera' onClick={() => CameraChange('WholeCamera')} className={ RecoilCameraValue === 'WholeCamera' ? 'PartButton_button btn_Shoelaces btnPress' : 'PartButton_button btn_Shoelaces' }>Whole Camera</button>
                 <button value="FrontCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'FrontCamera' ? 'PartButton_button btnPress' : 'PartButton_button' }>Front Camera</button>
                 <button value="RightCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'RightCamera' ? 'PartButton_button btnPress' : 'PartButton_button' }>Right Camera</button>
                 <button value="LeftCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'LeftCamera' ? 'PartButton_button btnPress' : 'PartButton_button' }>Left Camera</button>
