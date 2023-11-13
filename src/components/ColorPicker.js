@@ -3,6 +3,7 @@ import { ChromePicker } from 'react-color';
 import reactCSS from 'reactcss';
 import '../css/customspace.css';
 import * as THREE from 'three';
+import underRow from '../icon/underRow.png';
 import {RecoilRoot, atom, selector, useRecoilState, useRecoilValue,} from "recoil"
 import { colorState_ShoelacesR, 
     colorState_LeatherR, 
@@ -73,7 +74,10 @@ function ColorPicker(){
     const [rightbool, setRightBool] = useRecoilState(RightBool)
     const [fronbool, setFrontBool] = useRecoilState(FrontBool);
     const [leftbool, setLeftBool] = useRecoilState(LeftBool);
-    const [backbool, setBackBool] = useRecoilState(BackBool)
+    const [backbool, setBackBool] = useRecoilState(BackBool);
+
+    const [showCameraOptions, setShowCameraOptions] = useState(false);
+    const [showPartOption, setShowPartOption] = useState(false);
 
 
     const handleChange = (color) => {
@@ -88,6 +92,7 @@ function ColorPicker(){
     const PartChange = value => {
         SetPartValue(value);
         console.log(value);
+        setShowPartOption(showPartOptions => !showPartOptions)
     }
 
     const WayChange = bool => {
@@ -150,7 +155,7 @@ function ColorPicker(){
             setFrontBool(false);
             setBackBool(true);
         }
-
+        setShowCameraOptions(showCameraOptions => !showCameraOptions)
     }
 
     const handleColorChange = (color) => {
@@ -178,40 +183,57 @@ function ColorPicker(){
     }
 
     return(
-        <div>
+        <div className='SpaceTool'>
             <div className='PartButton_div'>
             <button value="L" onClick={() => WayChange(true)} className={ buttonPress === true ? 'PartButton_button btn_Shoelaces btnPress' : 'PartButton_button btn_Shoelaces' }>Left</button>
             <button value="R" onClick={() => WayChange(false)} className={ buttonPress === false ? 'PartButton_button btn_Sole btnPress' : 'PartButton_button btn_Sole'}>Right</button>
             </div>
-            <div className='PartButton_div'>
-                <button vlaue='WholeCamera' onClick={() => CameraChange('WholeCamera')} className={ RecoilCameraValue === 'WholeCamera' ? 'PartButton_button btn_Shoelaces btnPress' : 'PartButton_button btn_Shoelaces' }>Whole Camera</button>
-                <button value="FrontCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'FrontCamera' ? 'PartButton_button btnPress' : 'PartButton_button' }>Front Camera</button>
-                <button value="RightCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'RightCamera' ? 'PartButton_button btnPress' : 'PartButton_button' }>Right Camera</button>
-                <button value="LeftCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'LeftCamera' ? 'PartButton_button btnPress' : 'PartButton_button' }>Left Camera</button>
-                <button value="BackCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'BackCamera' ? 'PartButton_button btnPress' : 'PartButton_button' }>Back Camera</button>
-                <button value="TopCamera" onClick={e => CameraChange(e.target.value)} className={ RecoilCameraValue === 'TopCamera' ? 'PartButton_button btn_Sole btnPress' : 'PartButton_button btn_Sole' }>Top Camera</button>
+
+            <div className='PartButton_button dropdown_div'>
+            <button className='dropdown' onClick={() => setShowCameraOptions(showCameraOptions => !showCameraOptions)}>
+                <p className='dropdown_p'>{RecoilCameraValue}</p><img className="masterDiv_profile" src={underRow} width="20px" />
+            </button>
+            {showCameraOptions &&
+                <div className='dropdown_list'>
+                <button vlaue='WholeCamera' className="dropdown_list_btn" onClick={() => CameraChange('WholeCamera')} >Whole Camera</button>
+                <button value="FrontCamera" className="dropdown_list_btn" onClick={e => CameraChange(e.target.value)} >Front Camera</button>
+                <button value="RightCamera" className="dropdown_list_btn" onClick={e => CameraChange(e.target.value)} >Right Camera</button>
+                <button value="LeftCamera" className="dropdown_list_btn" onClick={e => CameraChange(e.target.value)} >Left Camera</button>
+                <button value="BackCamera" className="dropdown_list_btn" onClick={e => CameraChange(e.target.value)} >Back Camera</button>
+                <button value="TopCamera" className="dropdown_list_btn" onClick={e => CameraChange(e.target.value)} >Top Camera</button>
+                </div>
+            }
             </div>
-            <div className='PartButton_div'>
+            
                 {/* <RadioGroup label="part" value={PartValue} onChange={SetPartValue}></RadioGroup>
                     <Radio className='PartButton_button btn_Shoelaces'>Shoelaces</Radio> */}
                 {/* <input value="Shol" name="part" onClick={() => PartChange} className='PartButton_button btn_Shoelaces'>Shoelaces</input> */}
-                
-                <button value={"Shoelaces" + wayValue} onClick={e => PartChange(e.target.value)} className={ PartValue === "Shoelaces" + wayValue ? 'PartButton_button btn_Shoelaces btnPress' : 'PartButton_button btn_Shoelaces'}>Shoelaces</button>
-                <button value={'Leather' + wayValue} onClick={e => PartChange(e.target.value)} className={ PartValue === "Leather" + wayValue ? 'PartButton_button btnPress' : 'PartButton_button'}>Leather</button>
-                <button value={'InnerFabrick' + wayValue} onClick={e => PartChange(e.target.value)} className={ PartValue === "InnerFabrick" + wayValue ? 'PartButton_button btnPress' : 'PartButton_button'}>Inner_Fabrick</button>
-                <button value={'ThreadSole' + wayValue} onClick={e => PartChange(e.target.value)} className={ PartValue === "ThreadSole" + wayValue ? 'PartButton_button btnPress' : 'PartButton_button'}>Thread_Sole</button>
-                <button value={'MetalLabel' + wayValue} onClick={e => PartChange(e.target.value)} className={ PartValue === "MetalLabel" + wayValue ? 'PartButton_button btnPress' : 'PartButton_button'}>Metal_Label</button>
-                <button value={'Tongue' + wayValue} onClick={e => PartChange(e.target.value)} className={ PartValue === "Tongue" + wayValue ? 'PartButton_button btnPress' : 'PartButton_button'}>Tongue</button>
-                <button value={'Label'+wayValue} onClick={e => PartChange(e.target.value)} className={ PartValue === "Label" + wayValue ? 'PartButton_button btnPress' : 'PartButton_button'}>Label</button>
-                <button value={'Insole'+wayValue} onClick={e => PartChange(e.target.value)} className={ PartValue === "Insole" + wayValue ? 'PartButton_button btnPress' : 'PartButton_button'}>Insole</button>
-                <button value={'Sole'+wayValue} onClick={e => PartChange(e.target.value)} className={ PartValue === "Sole" + wayValue ? 'PartButton_button btn_Sole btnPress' : 'PartButton_button btn_Sole'}>Sole</button>
+            <div className='PartButton_button dropdown_div'>
+            <button className='dropdown' onClick={() => setShowPartOption(showPartOptions => !showPartOptions)}>
+                <p className='dropdown_p'>{PartValue}</p><img className="masterDiv_profile" src={underRow} width="20px" />
+            </button>
+            {showPartOption &&
+            <div className='dropdown_list'>
+                <button value={"Shoelaces" + wayValue} onClick={e => PartChange(e.target.value)} >Shoelaces</button>
+                <button value={'Leather' + wayValue} onClick={e => PartChange(e.target.value)} >Leather</button>
+                <button value={'InnerFabrick' + wayValue} onClick={e => PartChange(e.target.value)} >Inner_Fabrick</button>
+                <button value={'ThreadSole' + wayValue} onClick={e => PartChange(e.target.value)} >Thread_Sole</button>
+                <button value={'MetalLabel' + wayValue} onClick={e => PartChange(e.target.value)} >Metal_Label</button>
+                <button value={'Tongue' + wayValue} onClick={e => PartChange(e.target.value)} >Tongue</button>
+                <button value={'Label'+wayValue} onClick={e => PartChange(e.target.value)} >Label</button>
+                <button value={'Insole'+wayValue} onClick={e => PartChange(e.target.value)} >Insole</button>
+                <button value={'Sole'+wayValue} onClick={e => PartChange(e.target.value)} >Sole</button>
+                </div>
+            }
             </div>
+            
+
             <div className='ColorPicker'>
-                <input className='ColorPicker_input' value={selectColor} onChange={e => (handleColorChange(e.target.value), handleChange)} />
-                <div style={{width:"80px", height:"40px", backgroundColor:`${selectColor}`, borderRadius:"5px"}}></div>
+                {/* <input className='ColorPicker_input' value={selectColor} onChange={e => (handleColorChange(e.target.value), handleChange)} /> */}
+                <div style={{width:"100px", height:"40px", border:"1px solid white", marginRight:'5px',backgroundColor:`${selectColor}`, borderRadius:"5px"}}></div>
                 <button className='ColorPicker_button' onClick={() => ColorPickerButton()}>{detail ? "닫기" : "더보기"}</button>
                 {detail && 
-                    <ChromePicker className="ColorPicker_picker_Open" color={selectColor} onChange={color => handleColorChange(color.hex)}/>
+                    <ChromePicker className="ColorPicker_picker_Open" color={selectColor} onChange={color => (handleColorChange(color.hex), handleChange)}/>
                 }
             </div>
             

@@ -80,17 +80,17 @@ const colorState_SoleL = atom({
 });
 const PartState = atom({
     key: "ShoePart",
-    default: ''
+    default: 'Select Part'
 })
 
 const SelectCamera = atom({
     key: "Camera",
-    default: ''
+    default: 'FrontCamera'
 })
 
 const WholeBool = atom({
     key: 'whole',
-    default: 'false'
+    default: 'true'
 })
 
 const TopBool = atom({

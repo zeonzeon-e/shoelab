@@ -1,20 +1,49 @@
 /* 3D Canvas */
+.Custompage{
+    text-align: center;
+    align-items: center;
+}
+.Page_Custom{
+    padding-top: 100px;
+    display: flex;
+    flex-direction: row;
+}
+
 .treeCanvas{
     /* display: flex; */
    /* width: 700px;
     height: 500px; */
     width: 700px;
     height: 500Px;
-    border-radius: 10px;
+}
+
+.Page_under{
+    background-color: var(--mainColor);
+    height: 400px;
+    margin: 20px;
+    display: flex;
+    padding-top: 30px;
+    border-radius: 20px;
 }
 
 /*ColorPicker.js CSS*/
+.SpaceTool{
+    display: flex;
+    width: 300px;
+    height: 300px;
+    flex-direction: column;
+
+    text-align: center;
+    justify-content: space-around;
+    
+}
+
 .ColorPicker{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    border: 1px solid black;
-    width: 500px;
+    text-align: center;    
+    margin: auto;
+    width: fit-content;
     height: 40px;
 }
 
@@ -22,14 +51,15 @@
     width: 90px;
     font-size: 1.6rem;
     font-family: 'SUITE-Bold';
+    background-color: none;
 }
 
 .ColorPicker_button{
     height: 40px;
-    width: 80px;
+    width: 70px;
     font-size: 1.6rem;
     font-family: 'SUITE-Bold';
-    border: 1px solid black;
+    background-color: var(--pointColor);
     border-radius: 5px / 4px;
     padding-left: 3px;
     padding-right: 3px;
@@ -45,17 +75,21 @@
 
 /* 부위 별 버튼 */
 .PartButton_div{
+    margin: auto;
     display: flex;
+    text-align: center;
     width: fit-content;
 }
 
 .PartButton_button{
+    margin: auto;
     border: 2px black solid;
     padding: 8px;
     font-size: 2rem;
     font-family: 'SUITE-Bold';
     background-color: var(--pointColor);
     margin-left: -2px;
+    width: 90px;
 }
 
 .PartButton_button:hover{
@@ -73,4 +107,41 @@
 
 .btnPress{
     background-color: white;
+}
+
+/* DropDown */
+.dropdown_div{
+    margin: auto;
+    width: 180px;
+    position: relative;
+    text-align: center;
+    border-radius: 7px;
+    padding: 0;
+}
+
+.dropdown{
+    align-items: center;
+    display: flex;
+    width: 180px;
+    padding: 5px;
+    flex-direction: row;
+}
+
+.dropdown_p{
+    width: 135px;
+}
+
+.dropdown_list{
+    top: 42px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 180px;
+    background-color: white;
+}
+.dropdown_list_btn{
+    padding: 2px;
+}
+.dropdown_list_btn:hover{
+    background-color: lightgray;
 }

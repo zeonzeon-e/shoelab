@@ -17,28 +17,22 @@ function CustomPage(){
 const intensity = 1;
     const ChangeMaterial = useRef(Space.Material);
     return(
-        <div className="Page">
+        <div className="Page Custompage">
             <Header />
-            <div>
-            {/* <Suspense fallback={null}>
-            <Canvas shadows flat linear>
-                <Space />
-                <OrbitControls />
-            </Canvas>
-            
-            </Suspense> */}
-            {/* <SpaceFunction /> */}
-            <Suspense fallback={null}>
-                <div className="treeCanvas">
-            <Canvas>
-                <ThreeSpace />
-                <OrbitControls />
-            </Canvas>
-            </div>
-            </Suspense>
+            <div className="Page_Custom">
+            <div className="Page_Canvas">
+                <Suspense fallback={null}>
+                    <div className="treeCanvas">
+                <Canvas>
+                    <ThreeSpace />
+                    <OrbitControls />
+                </Canvas>
+                </div>
+                </Suspense>
             </div>
             <div className="Page_under">
                 <ColorPicker />
+            </div>
             </div>
             <Footer />
         </div>
