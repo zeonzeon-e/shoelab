@@ -2,37 +2,52 @@
 .Custompage{
     text-align: center;
     align-items: center;
+    background-color: black;
+
 }
 .Page_Custom{
     padding-top: 100px;
+    height: 800px;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 
 .treeCanvas{
     /* display: flex; */
    /* width: 700px;
     height: 500px; */
-    width: 700px;
-    height: 500Px;
+    width: 60vw;
+    height: 40vw;
+    box-shadow: 0px  0px 20px   white;
 }
 
 .Page_under{
     background-color: var(--mainColor);
-    height: 400px;
-    margin: 20px;
+    height: 200px;
+    margin: 10px;
     display: flex;
     padding-top: 30px;
     border-radius: 20px;
 }
 
+.customFooter{
+    height: 500px;
+    font-size: 25px;
+}
+
 /*ColorPicker.js CSS*/
+@keyframes blink-effect {
+    50% {
+      opacity: 0;
+    }
+  }
+
 .SpaceTool{
     display: flex;
     width: 300px;
-    height: 300px;
+    height: 400px;
     flex-direction: column;
-
     text-align: center;
     justify-content: space-around;
     
@@ -56,8 +71,8 @@
 
 .ColorPicker_button{
     height: 40px;
-    width: 70px;
-    font-size: 1.6rem;
+    width: 110px;
+    font-size: 2.4rem;
     font-family: 'SUITE-Bold';
     background-color: var(--pointColor);
     border-radius: 5px / 4px;
@@ -75,6 +90,7 @@
 
 /* 부위 별 버튼 */
 .PartButton_div{
+    padding-top: 30px;
     margin: auto;
     display: flex;
     text-align: center;
@@ -85,11 +101,11 @@
     margin: auto;
     border: 2px black solid;
     padding: 8px;
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-family: 'SUITE-Bold';
     background-color: var(--pointColor);
     margin-left: -2px;
-    width: 90px;
+    width: 115px;
 }
 
 .PartButton_button:hover{
@@ -112,7 +128,7 @@
 /* DropDown */
 .dropdown_div{
     margin: auto;
-    width: 180px;
+    width: 230px;
     position: relative;
     text-align: center;
     border-radius: 7px;
@@ -122,13 +138,13 @@
 .dropdown{
     align-items: center;
     display: flex;
-    width: 180px;
+    width: 230px;
     padding: 5px;
     flex-direction: row;
 }
 
 .dropdown_p{
-    width: 135px;
+    width: 180px;
 }
 
 .dropdown_list{
@@ -136,12 +152,19 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    width: 180px;
+    width: 230px;
     background-color: white;
+    z-index: 3;
 }
 .dropdown_list_btn{
     padding: 2px;
 }
 .dropdown_list_btn:hover{
     background-color: lightgray;
+}
+
+.errorMaessage_p{
+    font-size: 1.8rem;
+    color: white;
+    animation: blink-effect 1s step-end infinite;
 }

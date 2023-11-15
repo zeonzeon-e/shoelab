@@ -212,8 +212,7 @@ export default function Scene({ ...props }) {
 
   return (
     <>
-
-      <color attach="background" args={['#333333']} />
+      <color attach="background" args={['#000000']} />
       <group {...props} dispose={null}>
         <scene name="Scene 1">
         <PerspectiveCamera

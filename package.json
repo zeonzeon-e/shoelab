@@ -21,6 +21,7 @@
     "express-mysql-session": "^3.0.0",
     "express-session": "^1.17.3",
     "framer-motion": "^10.16.4",
+    "html2canvas": "^1.4.1",
     "mysql2": "^3.6.2",
     "react": "^18.2.0",
     "react-color": "^2.19.3",
@@ -35,6 +36,7 @@
     "spline": "^0.0.0",
     "styled-components": "^6.1.0",
     "three": "^0.158.0",
+    "typescript": "^5.2.2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -60,5 +62,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/file-saver": "^2.0.7"
+  },
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   }
 }

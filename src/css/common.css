@@ -80,9 +80,14 @@ html{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    transform: translateY(200%);
+    transform: translateY(100%);
 }
 /* 
 .Page_under{
     height: 100px;
 } */
+
+
+#imgaBox{
+    z-index: 10;
+}

@@ -1,9 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { ChromePicker } from 'react-color';
 import reactCSS from 'reactcss';
 import '../css/customspace.css';
 import * as THREE from 'three';
 import underRow from '../icon/underRow.png';
+import Scene from "./ThreeSpace";
+
 import {RecoilRoot, atom, selector, useRecoilState, useRecoilValue,} from "recoil"
 import { colorState_ShoelacesR, 
     colorState_LeatherR, 
@@ -32,6 +34,7 @@ import { colorState_ShoelacesR,
     LeftBool,
     BackBool
 } from './state';
+
 
 // const color_R = 'colorPicker/color_R';
 // const color_G = 'colorPicker/color_G';
@@ -65,7 +68,7 @@ function ColorPicker(){
 
     const [selectColor, setSelectColor] = useState("#000000"); //colorPicker로 정한 값
     const [detail, setDetail] = useState(false); //colorPicker이 열려있나?
-    const [buttonPress, setButtonPress] = useState();
+    const [buttonPress, setButtonPress] = useState('');
     const [PartValue, SetPartValue] = useRecoilState(PartState);
     const [wayValue, SetWayValue] = useState("");
     const [RecoilCameraValue, setCamera] = useRecoilState(SelectCamera);
@@ -78,6 +81,8 @@ function ColorPicker(){
 
     const [showCameraOptions, setShowCameraOptions] = useState(false);
     const [showPartOption, setShowPartOption] = useState(false);
+    
+    const [errorMessage, setErrorMessage] = useState("");
 
 
     const handleChange = (color) => {
@@ -88,22 +93,6 @@ function ColorPicker(){
     const ColorPickerButton = () => {
         setDetail(detail => !detail);
     }
-
-    const PartChange = value => {
-        SetPartValue(value);
-        console.log(value);
-        setShowPartOption(showPartOptions => !showPartOptions)
-    }
-
-    const WayChange = bool => {
-        setButtonPress(bool);
-        if(bool === true){
-            SetWayValue("L");
-        }else if(bool === false){
-            SetWayValue("R");
-        }
-    }
-
     const CameraChange = value => {
         setCamera(value);
         console.log(value);
@@ -158,11 +147,49 @@ function ColorPicker(){
         setShowCameraOptions(showCameraOptions => !showCameraOptions)
     }
 
+
+    const PartChange = value => {
+        if(buttonPress === ''){
+            setErrorMessage('왼쪽/오른쪽을 선택해주세요!')
+        }
+        SetPartValue(value);
+        console.log(value);
+        setShowPartOption(showPartOptions => !showPartOptions)
+    }
+
+    const WayChange = bool => {
+        const Part = PartValue.slice(0, -1);
+        setButtonPress(bool);
+        if(bool === true){
+            SetWayValue("L");
+            if(PartValue === Part+"L"){
+                SetPartValue(PartValue);
+            }else if(PartValue === Part+"R"){
+                PartValue.slice(0, -1);
+                SetPartValue(Part+"L");
+            }else{
+                SetPartValue(PartValue+"L");
+            }
+            
+        }else if(bool === false){
+            SetWayValue("R");
+            if(PartValue === Part+"R"){
+                SetPartValue(PartValue);
+            }else if(PartValue === Part+"L"){
+                PartValue.slice(0, -1);
+                SetPartValue(Part+"R");
+            }else{
+                SetPartValue(PartValue+"R");
+            }
+        }
+        setErrorMessage('')
+
+    }
+
+
     const handleColorChange = (color) => {
         setSelectColor(color);
-        if(PartValue === 'ShoelacesR'){setColor_ShoelacesR(color);
-         
-        console.log(color);}
+        if(PartValue === 'ShoelacesR'){setColor_ShoelacesR(color);}
         if(PartValue === 'LeatherR'){setColor_LeatherR(color);}
         if(PartValue === 'InnerFabrickR'){setColor_InnerFabrickR(color);}
         if(PartValue === 'ThreadSoleR'){setColor_ThreadSoleR(color);}
@@ -182,20 +209,29 @@ function ColorPicker(){
         if(PartValue === 'SoleL'){setColor_SoleL(color);}
     }
 
-    return(
-        <div className='SpaceTool'>
-            <div className='PartButton_div'>
-            <button value="L" onClick={() => WayChange(true)} className={ buttonPress === true ? 'PartButton_button btn_Shoelaces btnPress' : 'PartButton_button btn_Shoelaces' }>Left</button>
-            <button value="R" onClick={() => WayChange(false)} className={ buttonPress === false ? 'PartButton_button btn_Sole btnPress' : 'PartButton_button btn_Sole'}>Right</button>
-            </div>
+    // const onCapture = () => {
+    //     document.body.appendChild(renderer.domElement);
+    //     var camera = RecoilCameraValue;
+    //     var scene = Scene;
+    //     var w = window.open('', '');
+    //     w.document.title = "Screenshot";
+    //     var img = new Image();
+    //     renderer.render(scene, camera);
+    //     img.src = renderer.domElement.toDataURL();
+    //     w.document.body.appendChild(img);
+      
+    // }
 
+    return(
+        <div>
+        <div className='SpaceTool'>
             <div className='PartButton_button dropdown_div'>
             <button className='dropdown' onClick={() => setShowCameraOptions(showCameraOptions => !showCameraOptions)}>
                 <p className='dropdown_p'>{RecoilCameraValue}</p><img className="masterDiv_profile" src={underRow} width="20px" />
             </button>
             {showCameraOptions &&
                 <div className='dropdown_list'>
-                <button vlaue='WholeCamera' className="dropdown_list_btn" onClick={() => CameraChange('WholeCamera')} >Whole Camera</button>
+                <button value='WholeCamera' className="dropdown_list_btn" onClick={() => CameraChange('WholeCamera')} >Whole Camera</button>
                 <button value="FrontCamera" className="dropdown_list_btn" onClick={e => CameraChange(e.target.value)} >Front Camera</button>
                 <button value="RightCamera" className="dropdown_list_btn" onClick={e => CameraChange(e.target.value)} >Right Camera</button>
                 <button value="LeftCamera" className="dropdown_list_btn" onClick={e => CameraChange(e.target.value)} >Left Camera</button>
@@ -208,21 +244,25 @@ function ColorPicker(){
                 {/* <RadioGroup label="part" value={PartValue} onChange={SetPartValue}></RadioGroup>
                     <Radio className='PartButton_button btn_Shoelaces'>Shoelaces</Radio> */}
                 {/* <input value="Shol" name="part" onClick={() => PartChange} className='PartButton_button btn_Shoelaces'>Shoelaces</input> */}
+            <div className='PartButton_div'>
+            <button value="L" onClick={() => WayChange(true)} className={ buttonPress === true ? 'PartButton_button btn_Shoelaces btnPress' : 'PartButton_button btn_Shoelaces' }>Left</button>
+            <button value="R" onClick={() => WayChange(false)} className={ buttonPress === false ? 'PartButton_button btn_Sole btnPress' : 'PartButton_button btn_Sole'}>Right</button>
+            </div>
             <div className='PartButton_button dropdown_div'>
             <button className='dropdown' onClick={() => setShowPartOption(showPartOptions => !showPartOptions)}>
                 <p className='dropdown_p'>{PartValue}</p><img className="masterDiv_profile" src={underRow} width="20px" />
             </button>
             {showPartOption &&
             <div className='dropdown_list'>
-                <button value={"Shoelaces" + wayValue} onClick={e => PartChange(e.target.value)} >Shoelaces</button>
-                <button value={'Leather' + wayValue} onClick={e => PartChange(e.target.value)} >Leather</button>
-                <button value={'InnerFabrick' + wayValue} onClick={e => PartChange(e.target.value)} >Inner_Fabrick</button>
-                <button value={'ThreadSole' + wayValue} onClick={e => PartChange(e.target.value)} >Thread_Sole</button>
-                <button value={'MetalLabel' + wayValue} onClick={e => PartChange(e.target.value)} >Metal_Label</button>
-                <button value={'Tongue' + wayValue} onClick={e => PartChange(e.target.value)} >Tongue</button>
-                <button value={'Label'+wayValue} onClick={e => PartChange(e.target.value)} >Label</button>
-                <button value={'Insole'+wayValue} onClick={e => PartChange(e.target.value)} >Insole</button>
-                <button value={'Sole'+wayValue} onClick={e => PartChange(e.target.value)} >Sole</button>
+                <button value={"Shoelaces" + wayValue} className="dropdown_list_btn" onClick={e => PartChange(e.target.value)} >Shoelaces</button>
+                <button value={'Leather' + wayValue} className="dropdown_list_btn" onClick={e => PartChange(e.target.value)} >Leather</button>
+                <button value={'InnerFabrick' + wayValue} className="dropdown_list_btn" onClick={e => PartChange(e.target.value)} >Inner_Fabrick</button>
+                <button value={'ThreadSole' + wayValue} className="dropdown_list_btn" onClick={e => PartChange(e.target.value)} >Thread_Sole</button>
+                <button value={'MetalLabel' + wayValue} className="dropdown_list_btn" onClick={e => PartChange(e.target.value)} >Metal_Label</button>
+                <button value={'Tongue' + wayValue} className="dropdown_list_btn" onClick={e => PartChange(e.target.value)} >Tongue</button>
+                <button value={'Label'+wayValue} className="dropdown_list_btn" onClick={e => PartChange(e.target.value)} >Label</button>
+                <button value={'Insole'+wayValue} className="dropdown_list_btn" onClick={e => PartChange(e.target.value)} >Insole</button>
+                <button value={'Sole'+wayValue} className="dropdown_list_btn" onClick={e => PartChange(e.target.value)} >Sole</button>
                 </div>
             }
             </div>
@@ -230,13 +270,16 @@ function ColorPicker(){
 
             <div className='ColorPicker'>
                 {/* <input className='ColorPicker_input' value={selectColor} onChange={e => (handleColorChange(e.target.value), handleChange)} /> */}
-                <div style={{width:"100px", height:"40px", border:"1px solid white", marginRight:'5px',backgroundColor:`${selectColor}`, borderRadius:"5px"}}></div>
-                <button className='ColorPicker_button' onClick={() => ColorPickerButton()}>{detail ? "닫기" : "더보기"}</button>
+                <div style={{width:"120px", height:"40px", border:"1px solid white", marginRight:'5px',backgroundColor:`${selectColor}`, borderRadius:"5px"}}></div>
+                <button className='ColorPicker_button' onClick={() => ColorPickerButton()}>{detail ? "닫기" : "색 고르기"}</button>
                 {detail && 
                     <ChromePicker className="ColorPicker_picker_Open" color={selectColor} onChange={color => (handleColorChange(color.hex), handleChange)}/>
                 }
             </div>
-            
+        </div>
+        <div>
+            <p className='errorMaessage_p'>{errorMessage}</p>
+        </div>
         </div>
     )
 }
