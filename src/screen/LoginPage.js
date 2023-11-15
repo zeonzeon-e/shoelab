@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 
 function LoginPage(){
+
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
 
@@ -30,7 +31,7 @@ function LoginPage(){
                     </div>
                     <div>
                     <Link to='/'>
-                        <button className="box_button">로그인</button>
+                        <button className="box_button" >로그인</button>
                     </Link>
                     <br></br>
                     <Link to='/'>
