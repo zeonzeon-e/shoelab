@@ -10,7 +10,6 @@ import "../css/common.css";
 import ColorPicker from "../components/ColorPicker";
 import html2canvas from "html2canvas";
 import * as THREE from 'three'
-import scene from '../components/ThreeSpace';
 import { useRecoilState } from "recoil"
 import { SelectCamera } from "../components/state";
 // import saveAs from "file-saver";

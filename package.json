@@ -18,13 +18,17 @@
     "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-mysql-session": "^3.0.0",
     "express-session": "^1.17.3",
     "framer-motion": "^10.16.4",
     "html2canvas": "^1.4.1",
-    "mongodb": "^6.2.0",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.1",
     "mysql2": "^3.6.2",
+    "path-browserify": "^1.0.1",
     "react": "^18.2.0",
     "react-color": "^2.19.3",
     "react-dom": "^18.2.0",
@@ -42,7 +46,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"node src/server/express.js\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -71,5 +75,10 @@
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "noEmit": true
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
