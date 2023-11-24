@@ -1,9 +1,23 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+
 const { userRouter } = require('./routes/userRoute');
+
+//로그인 정보 저장하기 위한 것
+const session = require('express-session');
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
+app.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.COOKIE_SECRET,
+    cookie: {
+        httpOnly: true,
+        secure: false,
+    }
+}));
+
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -11,7 +25,7 @@ app.use(function(req, res, next) {
     next();
   })
 
-const MONGO_URI = 'mongodb+srv://admin:NsAwHH5VRuu1BZ47@atlascluster.pjn68in.mongodb.net/Shoelab?retryWrites=true&w=majority'
+const MONGO_URI = 'mongodb+srv://admin:@atlascluster.pjn68in.mongodb.net/Shoelab?retryWrites=true&w=majority'
 
 
 const server = async () =>{
