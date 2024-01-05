@@ -7,8 +7,14 @@ import OrderPage from './screen/OrderPage';
 import LoginPage from './screen/LoginPage';
 import DetailPage from './screen/ItemDetailPage';
 import OrderDetailPage from './screen/OrderDetailPage';
+import JoinPage from './screen/JoinPage';
+import MyPage from './screen/MyPage';
+import WritePage from './screen/Writepage';
 
 function App() {
+
+
+
   return (
     <div className="App">
       <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE/fonts/variable/woff2/SUITE-Variable.css" rel="stylesheet"></link>
@@ -16,13 +22,16 @@ function App() {
         <Routes>
           <Route path='/' element={<MainPage />} />
 
-          <Route path='/community' element={<CommunityPage />} />
-          <Route path='/community/:id'/>
+          <Route path='/board' element={<CommunityPage />} />
+          <Route path='/board/:id'/>
           <Route path='/custom' element={<CustomPage />} />
           <Route path='/order' element={<OrderPage />}/>
-          <Route path='/login' element={<LoginPage />}/>
-          <Route path='/community/detail' element={<DetailPage />}/>
+          <Route path='/login' element={<LoginPage/>}/>
+          <Route path='/join' element={<JoinPage/>}/>
+          <Route path='/board/detail/:idx' element={<DetailPage />}/>
           <Route path='/order/detail' element={<OrderDetailPage />}/>
+          <Route path='/mypage' element={<MyPage />}/>
+          <Route path='/write' element={<WritePage />}/>
         </Routes>
       </BrowserRouter>
     </div>

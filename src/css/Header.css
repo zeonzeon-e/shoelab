@@ -27,7 +27,21 @@
     height: 3vw;
     font-size: 1.2vw;
     font-family: 'SUITE-Bold';
-    margin-bottom: 5%;
+}
+
+.header_MypageBtn{
+    background-color: var(--pointColor);
+    color: var(--mainColor);
+    border-radius: 3px 3px;
+    width: 8vw;
+    height: 3vw;
+    font-size: 1.2vw;
+    font-family: 'SUITE-Bold';
+}
+
+.header_MypageBtn:hover{
+    box-shadow: inset 3px 3px 5px 0 rgba(0, 0, 0, 0.5),
+        inset -2px -2px 5px 0 rgba(255, 255, 255, 0.5);
 }
 
 .header_loginBtn:hover{

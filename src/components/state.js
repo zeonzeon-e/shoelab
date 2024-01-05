@@ -6,6 +6,11 @@ import {
     useRecoilValue,
 } from "recoil"
 
+const HasCookie = atom({
+    key:"hasCookie",
+    default:'false'
+})
+
 const colorState_ShoelacesR = atom({
     key: "color1",
     default:'0'
@@ -142,5 +147,6 @@ export { colorState_ShoelacesR,
     RightBool,
     FrontBool,
     LeftBool,
-    BackBool
+    BackBool,
+    HasCookie
 }

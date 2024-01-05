@@ -39,6 +39,19 @@
     column-gap: 5%;
 }
 
+.ItmeList_dox{
+    width: 100%;
+    display: flex;
+    text-align: left;
+    padding: 10px;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.ItemList_title{
+    font-size: 1.5rem;
+}
+
 .item_box{
     display: flex;
     box-shadow: 0px 0px 10px  rgba(0, 0, 0, 0.2);

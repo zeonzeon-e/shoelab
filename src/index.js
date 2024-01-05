@@ -4,19 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
-import {
-  RecoilRoot, atom, selector, useRecoilState, useRecoilValue, RecoilEnv
-} from 'recoil'
+import {RecoilRoot, RecoilEnv} from 'recoil';
+import { CookiesProvider } from 'react-cookie';
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <RecoilRoot>
+  <CookiesProvider>
   <React.StrictMode>
   <ChakraProvider>
     <App />
   </ChakraProvider>
   </React.StrictMode>
+  </CookiesProvider>
   </RecoilRoot>
 );
 

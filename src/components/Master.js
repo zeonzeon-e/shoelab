@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../css/reset.css";
 import "../css/footer.css";
 import "../css/components.css";
-import Shoe from '../shoes/shoe_nike.png';
+import Shoe1 from '../shoes/shoes2.png';
+import Shoe2 from '../shoes/shoes1.png'
 import profile from '../icon/profile.png';
 
 
@@ -10,15 +11,15 @@ function Master(){
     const masterList = [
         {
             masterID: 1,
-            masterName: "jihyeon",
+            masterName: "ArtHong",
             profileImg: profile,
-            img: Shoe
+            img: Shoe1
         },
         {
             masterID: 2,
             masterName: "alice",
             profileImg: profile,
-            img: Shoe
+            img: Shoe2
         },
     ]
     
@@ -31,7 +32,7 @@ function Master(){
                         <div className="master_div-detail">
                             <div>
                             <img className="masterDiv_profile" src={it.profileImg} width="200vw" />
-                            <p className="masterDiv_name">작성자 : {it.masterName}</p>
+                            <p className="masterDiv_name">{it.masterName}</p>
                             </div>
 
                             <div>

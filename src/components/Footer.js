@@ -8,6 +8,7 @@ function Footer(){
             <div>
                 <p>Illustration by Anton H</p>
                 <p>https://url.kr/fbqgaj</p>
+                <p>shoes img: https://www.instagram.com/p/CMLxdJeFS7Y/</p>
             </div>
         </div>
     )

@@ -1,17 +1,18 @@
-import React from "react";
+import {React} from "react";
 import "../css/reset.css";
 import "../css/main.css";
 import "../css/common.css";
 
 import { Box, Button } from "@chakra-ui/react";
-import Shoe from '../shoes/shoe_green.png'
+import Shoe from '../shoes/shoes3.png'
 import { Link } from "react-router-dom";
 
 function Main(){
+
     return(
         <div className="Main_div">
             <div className="Main_div-img">
-                <img src={Shoe} width='100%' alt="신발사진"/>
+                <img src={Shoe} />
             </div>
             <div className="Main_div-txt">
                 <p>세상에서 하나밖에 없는</p>

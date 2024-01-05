@@ -4,50 +4,63 @@ import "../css/login.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Input } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import API from '../server/utils/API';
+import { useCookies } from "react-cookie";
 import { useRecoilState } from "recoil";
 import { HasCookie } from "../components/state";
-import { withCookies, useCookies } from "react-cookie";
-import axios from "axios";
 
-axios.defaults.withCredentials = true;
-function LoginPage(){
-    const cookies= useCookies(['user']);
-    const [hasCookie, setHasCookie] = useRecoilState(HasCookie);
-  
-    useEffect(()=>{
-        setHasCookie(false);
-    }, [hasCookie]);
+function JoinPage(){
 
     const [id, setId] = useState("");
+    const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [isJoinnSuccess, setJoinSuccess] = useState(false);
+
     const userData = {
         userId: id,
         password: password,
+        userName : username,
+        email : email
     };
     const jsonData = JSON.stringify(userData);
 
-    const handleSubmit = async(e) => {
+    const createUserApi = async(e) => {
         e.preventDefault();
-        API.post("/user/sessionLogin",jsonData,)
+        API.post("/user/join",jsonData)
         .then(res => {
             // console.log(res);
             // console.log(res.data)
             console.log(res.data.result);
-            // if(res.data.result === 'ok'){
-            //     setHasCookie(true);
-            //     console.log(res);
-            //     alert("반갑습니다" + res.config.data.userId +"님");
-            // }else{
-            //     throw new Error(res.error);
-            // }
+            if(res.data.result === 'ok'){
+                setJoinSuccess(true);
+                console.log(isJoinnSuccess);
+                alert("회원가입이 완료되었습니다");
+                window.location.href = '/login';
+            }else{
+                throw new Error(res.error);
+            }
         })
-        window.location.href = '/';
-        // API.get("/user/sessionLogin")
     }
 
-
+    // const handleSubmit = async(e) => {
+    //     e.preventDefault();
+    //     try{
+    //         const response = await createUserApi({
+    //             userId: id,
+    //             password: password,
+    //             userName:username,
+    //             email:email
+    //         })
+    //         if(response.result === 'ok'){
+    //             setJoinSuccess(true);
+    //             console.log(isJoinnSuccess);
+    //         }
+    //     }catch(err){
+    //         console.error('join error', err);
+    //         alert("회원가입에 실패하였습니다");
+    //     }
+    // }
     // const loginApi = () => {
     //     API.post("/user/login",jsonData)
     //     .then(res =>{
@@ -87,10 +100,15 @@ function LoginPage(){
             <Header />
             <div className="content">
                 <div className="form_div">
-                    <p className="form_p">LOGIN</p>
+                    <p className="form_p">JOIN US</p>
                     <div className="form_div-box">
                         <p className="box_p">ID</p>
                         <Input color="#ffffff" name="id" onChange={event => {setId(event.target.value);}}
+                         _placeholder={{ color: 'inherit' }} width='100%' fontSize="1vw" variant='flushed' size="lg"/>
+                    </div>
+                    <div className="form_div-box">
+                        <p className="box_p">NICKNAME</p>
+                        <Input color="#ffffff" name="pw" onChange={event => {setUserName(event.target.value);}}
                          _placeholder={{ color: 'inherit' }} width='100%' fontSize="1vw" variant='flushed' size="lg"/>
                     </div>
                     <div className="form_div-box">
@@ -98,14 +116,13 @@ function LoginPage(){
                         <Input color="#ffffff" name="pw" onChange={event => {setPassword(event.target.value);}}
                          _placeholder={{ color: 'inherit' }} width='100%' fontSize="1vw" variant='flushed' size="lg"/>
                     </div>
+                    <div className="form_div-box">
+                        <p className="box_p">EMAIL</p>
+                        <Input color="#ffffff" name="pw" onChange={event => {setEmail(event.target.value);}}
+                         _placeholder={{ color: 'inherit' }} width='100%' fontSize="1vw" variant='flushed' size="lg"/>
+                    </div>
                     <div>
-                    <Link to='/'>
-                        <button className="box_button" onClick={handleSubmit}>로그인</button>
-                    </Link>
-                    <br></br>
-                    <Link to='/join'>
-                        <button className="box_button" >회원가입</button>
-                    </Link>
+                        <button className="box_button" onClick={createUserApi}>회원가입 하기</button>
                     </div>
                 </div>
             </div>
@@ -114,4 +131,4 @@ function LoginPage(){
     )
 }
 
-export default LoginPage;
+export default JoinPage;
